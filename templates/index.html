@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
+    <title>FlaskBlog</title>
+</head>
+<body>
+    <h1>Welcome to the study. Please, choose a question you want to ask</h1>
+    <ul>
+        {% for question in questions %}
+          <li>
+            <a href="/conv{{ questions.index(question) }}">
+              <button>{{ question }}</button>
+            </a>
+          </li>
+        {% endfor %}
+        </ul>
+</body>
+</html>
