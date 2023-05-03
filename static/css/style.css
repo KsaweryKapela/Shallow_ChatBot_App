@@ -22,6 +22,7 @@ html { font-family: 'PT Sans', Georgia, serif; }
 }
 .discussion > .bubble.recipient {
 	align-self: flex-end;
+	display: none;
 	background-color: #efefef;
 }
 

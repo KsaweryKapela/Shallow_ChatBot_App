@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
     <title>FlaskBlog</title>
+    <script>
+      window.onpageshow = function(event) {
+          if (event.persisted) {
+              location.reload(); // Reload the page if loaded from cache
+          }
+      };
+  </script>
 </head>
 <body>
     <h1>Welcome to the study. Please, choose a question you want to ask</h1>
