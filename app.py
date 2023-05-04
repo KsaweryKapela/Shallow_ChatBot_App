@@ -1,6 +1,8 @@
 from flask import Flask, render_template, session, redirect, Response
 from flask_session import Session
 import os
+import pandas as pd
+import numpy as np
 
 KEY = os.urandom(12)
 app = Flask(__name__)
@@ -14,38 +16,44 @@ def del_used_questions(questions):
     if 'used_q' not in session:
         session['used_q'] = []
 
-    for index in sorted(session['used_q'], reverse=True):
-        del questions[index]
-        
+    questions = np.delete(questions, session['used_q'], axis=0)
+
     return questions
 
 def get_questions():
-    questions = ['Yay', 'yooo', 'yupiyay', 'eyoo', 'ayayaya']
-    return del_used_questions(questions)
+    questions = pd.read_excel('text_data.xlsx')
+    questions = questions.values
+
+    return questions
 
 @app.route('/')
 def index():
-    if len(get_questions()) == 0:
-        session['used_q'] = []
+
     if 'using_rn' in session:
         session['used_q'].append(session.pop('using_rn'))
     
-    questions = get_questions()
+    questions_all = [question[0] for question in get_questions()]
 
-    if 'redirect' in session:
-        del session['redirect']
-        return redirect('/')
-        
-    return render_template('index.html', questions=questions)
+    questions = del_used_questions(questions_all)
+
+    session['used_q'] = list(set(session['used_q']))
+    print(session['used_q'])
+
+    ## TESTING
+    if len(questions) == 0:
+        session['used_q'] = []
+    ## TESTING
+    
+    return render_template('index.html', questions=questions, questions_all=questions_all)
 
 @app.route('/conv<int:number>')
 def conversation(number):
-    question_text = get_questions()[number]
+    question_all = get_questions()[number]
+    question_text = question_all[0]
+    question_answer = question_all[1:][~pd.isnull(question_all[1:])]
     session['using_rn'] = number
-    session['redirect'] = True
 
-
-    return render_template('conversation.html', number=number, question_text=question_text)
+    return render_template('conversation.html', number=number, question_text=question_text, question_answer=question_answer)
 
 if __name__ == "__main__":
-    app.run(debug=True, port=3000)
+    app.run(debug=True, port=5000)

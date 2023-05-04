@@ -7,30 +7,40 @@
     
 </head>
 <body>
+
+  
     <section class="discussion">
-	
+
         <div class="bubble sender first">{{ question_text }}</div>
 
-        <div class="bubble recipient">Oh that's cool!</div>
-        <div class="bubble recipient">Dopedasdsadsad!</div>
-        <div class="bubble recipient">Did you use JavaScript to perform that kind of effect?</div>
+        {% for answer in question_answer %}
         
+        <div class="bubble recipient"> {{ answer }} </div>
+
+
+      {% endfor %}
+          <div class="dot-flashing"></div>
     </section>
 
 
     <script>
         const bubbles = document.querySelectorAll('.bubble');
-        
+        const dots = document.querySelector('.dot-flashing')
         let delay = 0;
         
         bubbles.forEach((bubble, index) => {
           const text = bubble.textContent;
-          delay += text.length * 0.1 * 1000;
+          delay += text.length * 0.05 * 1000 + 500;
           
           setTimeout(() => {
             bubble.style.display = 'inline-block';
           }, delay);
         });
+        
+        setTimeout(() => {
+            dots.style.display = 'none';
+          }, delay);
+
       </script>
       
 
