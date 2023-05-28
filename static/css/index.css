@@ -1,0 +1,62 @@
+html { font-family: 'Nunito', sans-serif;
+        margin-top: 0vw;
+        margin-right: 2vw;
+        margin-left: 2vw;
+        font-size: 1.5vw;
+            }
+
+ul {
+    list-style-type: none;
+}
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+
+.introduction {
+    font-size: 2vw;
+    font-weight: 300;
+    text-align: justify;
+}
+
+
+.div_1 {
+    flex-basis: 65%;
+}
+
+.div_2 {
+    flex-basis: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+.timer {
+    margin-left: auto;
+    text-align: right;
+}
+
+.avatar {
+    display: flex;
+    border-radius: 50%;
+    width: 20vw;
+    height: auto;         
+}
+
+.name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.question {
+    font-size: 1.5vw;
+    font-weight: 400;
+    text-align: left;
+
+    padding: 2vh;
+    margin-bottom: 2vh;
+}

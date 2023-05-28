@@ -1,7 +1,31 @@
-html { font-family: 'PT Sans', Georgia, serif; }
+html { font-family: 'Nunito', sans-serif;
+	margin-top: 0vw;
+	margin-right: 2vw;
+	margin-left: 2vw;
+	font-size: 1.5vw;
+		}
+
+.container {
+	display: flex;
+	flex-direction: row;
+}
+
+	
+.div_1 {
+	flex-basis: 70%;
+}
+
+
+.div_2 {
+	flex-basis: 40%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 100vh;
+}
+
 
 .discussion {
-	max-width: 600px;
 	margin: 0 auto;
 	
 	display: flex;
@@ -87,4 +111,25 @@ animation-delay: 1s;
 50%, 100% {
 	background-color: rgba(152, 128, 255, 0.2);
 }
+}
+
+
+
+.timer {
+    margin-left: auto;
+    text-align: right;
+}
+
+.avatar {
+    display: flex;
+    border-radius: 50%;
+    width: 20vw;
+    height: auto;         
+}
+
+.name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }

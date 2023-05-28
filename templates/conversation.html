@@ -2,12 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
-    <title>FlaskBlog</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/conversation.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700&display=swap" rel="stylesheet">
+    <title>Conversation</title>
     
 </head>
 <body>
-
+    <div class="container">
+    <div class="div_1">
   
     <section class="discussion">
 
@@ -44,6 +48,46 @@
       </script>
       
 
-    <button> <a href="/">I have read all, let me ask next question</a></button>
+    <button> <a href="/">Następne pytanie</a></button>
+</div>
+
+
+    <div class="div_2">
+        <h1 id="timer" class="timer">{{ remaining_time[0] }}:{{ remaining_time[1] }}</h1>
+
+        <script>
+            var remainingMinutes = {{ remaining_time[0] }};
+            var remainingSeconds = {{ remaining_time[1] }};
+
+            function countdown() {
+                var timerElement = document.getElementById("timer");
+
+                // Display the remaining time
+                timerElement.textContent = remainingMinutes.toString().padStart(2, '0') + ':' + remainingSeconds.toString().padStart(2, '0');
+
+                // Update the remaining time
+                if (remainingSeconds > 0) {
+                    remainingSeconds--;
+                } else if (remainingMinutes > 0) {
+                    remainingMinutes--;
+                    remainingSeconds = 59;
+                } else {
+                    // Countdown completed
+                    timerElement.textContent = "00:00";
+                    return;
+                }
+
+                // Call the countdown function again after 1 second
+                setTimeout(countdown, 1000);
+            }
+
+            // Start the countdown
+            countdown();
+        </script>
+        <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQeitT1f5FcSxOWPcPs0DSY1yHIn7CyA6kGg&usqp=CAU' alt="avatar" class="avatar"/>
+        <h1 class="name">Alicja</h1>
+
+    </div>
+</div>
 </body>
 </html>
