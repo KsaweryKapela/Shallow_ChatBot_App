@@ -1,4 +1,4 @@
-from flask import Flask, render_template, session, redirect, Response
+from flask import Flask, render_template, session, redirect, Response, make_response, request
 from flask_session import Session
 import os
 import pandas as pd
@@ -30,18 +30,40 @@ def get_questions():
 
 def calculate_remaining_time():
         remaining_time = session['end_time'] - datetime.now()
-        minutes = (remaining_time.seconds % 3600) // 60
-        seconds = remaining_time.seconds % 60
+
+        if remaining_time.total_seconds() < 0:
+            session['endtime'] = True
+            minutes = 00
+            seconds = 00
+        
+        else:
+            minutes = (remaining_time.seconds % 3600) // 60
+            seconds = remaining_time.seconds % 60
 
         remaining_time = minutes, seconds
         return remaining_time
 
+def check_if_over():
+    if (session['end_time'] - datetime.now()).total_seconds() < 0:
+        session['used_q'] = range(0, 17)
+        return True
+    else:
+        return False
+
+@app.route('/<string:variant>')
+def variant(variant):
+    if 'variant' in session:
+        return redirect('/')
+    else:
+        session['variant'] = variant
+        return redirect('/')
+    
 @app.route('/')
 def index():
-
+    print(session)
     if 'loaded' in session:
         if session['first_open'] is True:
-            session['end_time'] = datetime.now() + timedelta(minutes=15)
+            session['end_time'] = datetime.now() + timedelta(minutes=15) ######
             session['first_open'] = False
 
         if 'using_rn' in session:
@@ -52,11 +74,9 @@ def index():
         questions = del_used_questions(questions_all)
 
         session['used_q'] = list(set(session['used_q']))
-        print(session['used_q'])
 
-        if len(questions) == 0:
-            session['used_q'] = []
-
+        session.pop('page_reloaded', None)
+        print(session)
 
         return render_template('index.html', questions=questions, questions_all=questions_all, remaining_time=calculate_remaining_time())
 
@@ -73,8 +93,23 @@ def conversation(number):
     question_text = question_all[0]
     question_answer = question_all[1:][~pd.isnull(question_all[1:])]
     session['using_rn'] = number
-
     return render_template('conversation.html', number=number, question_text=question_text, question_answer=question_answer, remaining_time=calculate_remaining_time())
+
+@app.route('/leave')
+def leave():
+
+    if 'endtime' in session:
+        endtime = True
+    else:
+        endtime = False
+
+    min, sec = calculate_remaining_time()
+    code = f'{min + 12}x{len(session["used_q"])}{session["variant"]}y{sec + 13}'
+    if session['variant'] == 'r':
+        link = 'https://www.w3schools.com/html/html_links.asp'
+    elif session['variant'] == 'h':
+        link = 'https://www.w3schools.com/html/html_links.asp'
+    return render_template('leavepage.html', code=code, link=link, endtime=endtime)
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)

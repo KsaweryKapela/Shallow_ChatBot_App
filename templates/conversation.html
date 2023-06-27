@@ -21,15 +21,16 @@
         
         <div class="bubble recipient"> {{ answer }} </div>
 
-
-      {% endfor %}
+        {% endfor %}
           <div class="dot-flashing"></div>
+          <a href="/" class="comeback">Wróć do pytań</a>
     </section>
 
 
     <script>
         const bubbles = document.querySelectorAll('.bubble');
-        const dots = document.querySelector('.dot-flashing')
+        const dots = document.querySelector('.dot-flashing');
+        const comeback = document.querySelector('.comeback');
         let delay = 0;
         
         bubbles.forEach((bubble, index) => {
@@ -45,10 +46,14 @@
             dots.style.display = 'none';
           }, delay);
 
+          setTimeout(() => {
+            comeback.classList.add('change');
+          }, delay + 1000);
+
       </script>
       
 
-    <button> <a href="/">Następne pytanie</a></button>
+
 </div>
 
 
@@ -84,7 +89,7 @@
             // Start the countdown
             countdown();
         </script>
-        <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQeitT1f5FcSxOWPcPs0DSY1yHIn7CyA6kGg&usqp=CAU' alt="avatar" class="avatar"/>
+        <img src='https://i.ibb.co/zSdF6YG/face.jpg' alt="avatar" class="avatar"/>
         <h1 class="name">Alicja</h1>
 
     </div>

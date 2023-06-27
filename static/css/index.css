@@ -7,6 +7,7 @@ html { font-family: 'Nunito', sans-serif;
 
 ul {
     list-style-type: none;
+    padding-left: 0;
 }
 .container {
     display: flex;
@@ -41,7 +42,7 @@ ul {
 .avatar {
     display: flex;
     border-radius: 50%;
-    width: 20vw;
+    width: 25vw;
     height: auto;         
 }
 
@@ -56,7 +57,18 @@ ul {
     font-size: 1.5vw;
     font-weight: 400;
     text-align: left;
-
+    cursor: pointer;
     padding: 2vh;
     margin-bottom: 2vh;
+}
+
+.leavebutton {
+    font-size: 1.5vw;
+    text-decoration: none;
+    color: black;
+    font-weight: 400;
+    text-align: left;
+    cursor: pointer;
+    margin-bottom: 2vh;
+    padding: 1vh;
 }

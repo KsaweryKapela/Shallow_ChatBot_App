@@ -32,36 +32,48 @@
             <h1 id="timer" class="timer">{{ remaining_time[0] }}:{{ remaining_time[1] }}</h1>
 
             <script>
+                function refreshPageOnce() {
+                if (!sessionStorage.getItem('pageRefreshed')) {
+                    sessionStorage.setItem('pageRefreshed', 'true');
+                }
+                }
+
+                window.onunload = function() {
+                if (!sessionStorage.getItem('pageRefreshed')) {
+                    sessionStorage.setItem('pageRefreshed', 'true');
+                }
+                };
+
+                refreshPageOnce();
                 var remainingMinutes = {{ remaining_time[0] }};
                 var remainingSeconds = {{ remaining_time[1] }};
 
                 function countdown() {
                     var timerElement = document.getElementById("timer");
 
-                    // Display the remaining time
                     timerElement.textContent = remainingMinutes.toString().padStart(2, '0') + ':' + remainingSeconds.toString().padStart(2, '0');
 
-                    // Update the remaining time
                     if (remainingSeconds > 0) {
                         remainingSeconds--;
                     } else if (remainingMinutes > 0) {
                         remainingMinutes--;
                         remainingSeconds = 59;
                     } else {
-                        // Countdown completed
                         timerElement.textContent = "00:00";
+                        window.location.href = '/leave';
                         return;
                     }
 
-                    // Call the countdown function again after 1 second
                     setTimeout(countdown, 1000);
                 }
 
-                // Start the countdown
                 countdown();
             </script>
-            <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQeitT1f5FcSxOWPcPs0DSY1yHIn7CyA6kGg&usqp=CAU' alt="avatar" class="avatar"/>
+            <img src='https://i.ibb.co/zSdF6YG/face.jpg' alt="avatar" class="avatar"/>
             <h1 class="name">Alicja</h1>
+            {% if questions|length < 13 %}
+            <a href="/leave"><button class="leavebutton">Przejdź dalej</button></a>
+            {% endif %}
 
         </div>
     </div>

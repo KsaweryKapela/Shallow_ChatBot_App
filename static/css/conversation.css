@@ -1,3 +1,4 @@
+
 html { font-family: 'Nunito', sans-serif;
 	margin-top: 0vw;
 	margin-right: 2vw;
@@ -10,7 +11,7 @@ html { font-family: 'Nunito', sans-serif;
 	flex-direction: row;
 }
 
-	
+
 .div_1 {
 	flex-basis: 70%;
 }
@@ -50,23 +51,9 @@ html { font-family: 'Nunito', sans-serif;
 	background-color: #efefef;
 }
 
-ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  li {
-    background-color: #f2f2f2;
-    border-radius: 10px;
-    color: #333;
-    font-size: 14px;
-    margin-bottom: 8px;
-    padding: 10px;
-    max-width: 80%;
-  }
-
 .dot-flashing {
+margin-right: 1vw;
+margin-top: 0.5vw;
 align-self: flex-end;
 position: relative;
 width: 10px;
@@ -77,12 +64,14 @@ color: #9880ff;
 animation: dot-flashing 1s infinite linear alternate;
 animation-delay: 0.5s;
 }
+
 .dot-flashing::before, .dot-flashing::after {
 content: "";
 display: inline-block;
 position: absolute;
 top: 0;
 }
+
 .dot-flashing::before {
 left: -15px;
 width: 10px;
@@ -93,6 +82,7 @@ color: #9880ff;
 animation: dot-flashing 1s infinite alternate;
 animation-delay: 0s;
 }
+
 .dot-flashing::after {
 left: 15px;
 width: 10px;
@@ -113,7 +103,24 @@ animation-delay: 1s;
 }
 }
 
+.comeback {
+	background-color: #537cc5;
+	color: white;
+	text-decoration:none;
+    font-size: 2vw;
+	align-self: flex-end;
+    margin-top: 2vh;
+    padding: 10px;
+    border-radius: 10px;
+	display: none;
+	opacity: 0;
+	transition: all 1s;
+}
 
+.change {
+	display: inline-block;
+	opacity: 1;
+  }
 
 .timer {
     margin-left: auto;
@@ -123,7 +130,7 @@ animation-delay: 1s;
 .avatar {
     display: flex;
     border-radius: 50%;
-    width: 20vw;
+    width: 25vw;
     height: auto;         
 }
 
@@ -133,3 +140,5 @@ animation-delay: 1s;
     align-items: center;
 
 }
+
+
