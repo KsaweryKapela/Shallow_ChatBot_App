@@ -147,8 +147,8 @@ animation-delay: 1s;
 
 @media (max-width: 767px) {
 	html {
-		font-size: 2vh;}
+		font-size: 3vh;}
 	.comeback {
-		font-size: 2vh;
+		font-size: 3vh;
 	}
 }
