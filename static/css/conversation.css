@@ -6,6 +6,8 @@ html { font-family: 'Nunito', sans-serif;
 	font-size: 1.5vw;
 		}
 
+
+
 .container {
 	display: flex;
 	flex-direction: row;
@@ -142,3 +144,11 @@ animation-delay: 1s;
 }
 
 
+
+@media (max-width: 767px) {
+	html {
+		font-size: 2vh;}
+	.comeback {
+		font-size: 2vh;
+	}
+}

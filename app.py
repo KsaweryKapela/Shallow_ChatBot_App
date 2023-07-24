@@ -106,10 +106,13 @@ def leave():
     min, sec = calculate_remaining_time()
     code = f'{min + 12}x{len(session["used_q"])}{session["variant"]}y{sec + 13}'
     if session['variant'] == 'r':
-        link = 'https://www.w3schools.com/html/html_links.asp'
+        link = 'https://ipsuj.qualtrics.com/jfe/form/SV_20uCWlOx3R5KeiO'
     elif session['variant'] == 'h':
-        link = 'https://www.w3schools.com/html/html_links.asp'
+        link = 'https://ipsuj.qualtrics.com/jfe/form/SV_8e9J8IiSn8pnFc2'
+    elif session['variant'] == 't':
+        link = 'https://ipsuj.qualtrics.com/jfe/form/SV_20uCWlOx3R5KeiO'
     return render_template('leavepage.html', code=code, link=link, endtime=endtime)
 
 if __name__ == "__main__":
-    app.run(debug=False, port='0.0.0.0')
+    app.run(debug=True, port='3000')
+    # app.run(debug=False, port='0.0.0.0')

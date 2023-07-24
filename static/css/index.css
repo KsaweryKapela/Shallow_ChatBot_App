@@ -5,6 +5,7 @@ html { font-family: 'Nunito', sans-serif;
         font-size: 1.5vw;
             }
 
+
 ul {
     list-style-type: none;
     padding-left: 0;
@@ -20,7 +21,6 @@ ul {
     font-weight: 300;
     text-align: justify;
 }
-
 
 .div_1 {
     flex-basis: 65%;
@@ -62,13 +62,29 @@ ul {
     margin-bottom: 2vh;
 }
 
+@media (max-width: 767px) {
+    .question {
+        font-size: 1.5vh;}
+    .introduction {
+        font-size: 2vh;}
+    .avatar {
+
+        width: 20vh;
+        
+    }}
+
+
 .leavebutton {
-    font-size: 1.5vw;
+    font-size: 3.5vw;
     text-decoration: none;
+    background-color:cornflowerblue;
     color: black;
     font-weight: 400;
     text-align: left;
     cursor: pointer;
     margin-bottom: 2vh;
+    border-radius: 10px;
+    text-decoration: none;
+    border: none;
     padding: 1vh;
 }
