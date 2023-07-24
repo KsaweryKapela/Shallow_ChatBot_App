@@ -145,10 +145,10 @@ animation-delay: 1s;
 
 
 
-@media (max-width: 767px) {
+@media (max-width: 1000px) {
 	html {
-		font-size: 3vh;}
+		font-size: 2vh;}
 	.comeback {
-		font-size: 3vh;
+		font-size: 2.5vh;
 	}
 }

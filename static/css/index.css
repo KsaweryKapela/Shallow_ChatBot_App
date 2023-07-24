@@ -62,11 +62,11 @@ ul {
     margin-bottom: 2vh;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1000px) {
     .question {
-        font-size: 2.5vh;}
+        font-size: 1.5vh;}
     .introduction {
-        font-size: 3vh;}
+        font-size: 1.5vh;}
     .avatar {
 
         width: 20vh;
