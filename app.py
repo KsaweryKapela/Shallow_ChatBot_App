@@ -58,12 +58,13 @@ def variant(variant):
         session['variant'] = variant
         return redirect('/')
     
+    
 @app.route('/')
 def index():
     print(session)
     if 'loaded' in session:
         if session['first_open'] is True:
-            session['end_time'] = datetime.now() + timedelta(minutes=15) ######
+            session['end_time'] = datetime.now() + timedelta(minutes=15)
             session['first_open'] = False
 
         if 'using_rn' in session:
@@ -93,6 +94,7 @@ def conversation(number):
     question_text = question_all[0]
     question_answer = question_all[1:][~pd.isnull(question_all[1:])]
     session['using_rn'] = number
+    session['used_q'].append(session.pop('using_rn'))
     return render_template('conversation.html', number=number, question_text=question_text, question_answer=question_answer, remaining_time=calculate_remaining_time())
 
 @app.route('/leave')
@@ -111,6 +113,9 @@ def leave():
         link = 'https://ipsuj.qualtrics.com/jfe/form/SV_8e9J8IiSn8pnFc2'
     elif session['variant'] == 't':
         link = 'https://ipsuj.qualtrics.com/jfe/form/SV_20uCWlOx3R5KeiO'
+    elif session['variant'] == 'p':
+        link = 'https://ipsuj.qualtrics.com/jfe/form/SV_ahpQgPXnWS87ZfE?fbclid=IwAR1MdL_QbpRSWiTx65svCUb3bgIeocC2RODIKoBg41HlpPJJmlU1IH9BVQs'
+
     return render_template('leavepage.html', code=code, link=link, endtime=endtime)
 
 if __name__ == "__main__":
